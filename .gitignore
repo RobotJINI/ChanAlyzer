@@ -131,3 +131,5 @@ dmypy.json
 
 #eclipse
 .project
+*.txt
+.pydevproject
