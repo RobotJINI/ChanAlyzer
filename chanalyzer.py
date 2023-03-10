@@ -101,10 +101,10 @@ class ChanThread:
 
 if __name__ == '__main__':
     
-    parser = argparse.ArgumentParser(description='Mad rascal')
+    parser = argparse.ArgumentParser(description='ChanAlyzer')
     parser.add_argument('-s', '--new_snapshot', help='Save new snapshot', action='store_true')
     
     args = parser.parse_args()
-    chanalyzer = ChanAlyzer('https://boards.4chan.org/pol/', args.new_snapshot)
+    chanalyzer = ChanAlyzer('https://boards.4chan.org/biz/', args.new_snapshot)
     chanalyzer.word_cloud()
     
