@@ -16,25 +16,32 @@ class WordCloud():
     def __init__(self):
         self._words = []
         self._stop_words = set(stopwords.words('english'))
-        self._stop_words.update(['gt', 'quot', 'http', 'https', 'thread', 'new', 'people'])
+        self._stop_words.update(['gt', 'quot', 'http', 'https', 'thread', 'new', 'people', 't'])
     
     def load_from_threads(self, chan_threads):
         for chan_thread in chan_threads:
             new_words = chan_thread.get_words()
-            self._words.extend(self._remove_stop_words(new_words))
+            new_words = self._remove_stop_words(new_words)
+            print(new_words)
+            self._words.extend(new_words)
     
     def save(self):
         stylecloud.gen_stylecloud(text=" ".join(self._words), collocations=False)
             
     def _remove_stop_words(self, words):
-        return [word for word in words if word.lower() not in self._stop_words]
+        words = [word.strip() for word in words if word.strip()]
+        words = [word for word in words if not re.search('[^A-Za-z]', word)]
+        return [word for word in words if (word.lower() not in self._stop_words) and (len(word) > 2)]
         
 
 
 class ChanAlyzer:
-    def __init__(self, url, new_snapshot=False, snapshot_loc='snapshot.txt'):
+    def __init__(self, url, new_snapshot=False, snapshot_loc='snapshot.txt', db_name='ChanAlyzer.db'):
         self._url = url
+        self._new_snapshot = new_snapshot
         self._chan_threads = []
+        self._db_name = db_name
+        self._create_db()
         self._load_snapshot(new_snapshot, snapshot_loc)
         
     def word_cloud(self):
@@ -91,11 +98,7 @@ class ChanThread:
         country = data['country'] if (data.get('country') is not None) else 'null'
         imgurl = data['imgurl'] if (data.get('imgurl') is not None) else 'null'
         return cls(url, data['date'], data['file'], data['lr'], country, data['author'], imgurl, data['sub'], data['teaser'])
-        
-    def str(self):
-        return f'Url: {self.url}, Date: {self.date}, File: {self.file}, LR: {self.lr}, ' + \
-               f'Country: {self.country}, Author: {self.author}, Img URL: {self.imgurl}, ' + \
-               f'Sub: {self.sub}, Teaser: {self.teaser}'
+
 
 if __name__ == '__main__':
     
@@ -103,6 +106,6 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--new_snapshot', help='Save new snapshot', action='store_true')
     
     args = parser.parse_args()
-    chanalyzer = ChanAlyzer('https://boards.4chan.org/pol/', args.new_snapshot)
+    chanalyzer = ChanAlyzer('https://boards.4chan.org/biz/', args.new_snapshot)
     chanalyzer.word_cloud()
     
