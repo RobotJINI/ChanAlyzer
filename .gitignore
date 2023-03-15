@@ -131,6 +131,5 @@ dmypy.json
 
 #eclipse
 .project
-*.txt
 .pydevproject
 stylecloud.png
