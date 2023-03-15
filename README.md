@@ -19,7 +19,7 @@ python chanalyzer.py [-s]
 
 The -s flag is optional and indicates whether to save a new snapshot of the catalog page. If the -s flag is not provided, the program will load the existing snapshot.
 
-The program will output a word cloud image file named ChanAlyzer_<timestamp>.png in the current working directory.
+The program will output a word cloud image file named ChanAlyzer_< timestamp >.png in the current working directory.
 
 ## Contributing
 If you encounter any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
