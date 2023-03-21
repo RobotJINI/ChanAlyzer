@@ -22,6 +22,10 @@ g page. If the -s flag is not provided, the program will load the existing snaps
 
 The program will output a word cloud image file named ChanAlyzer_< timestamp >.png in the current working directory.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/571631/226733704-71c73624-1547-46f8-9c29-cad39bbdf31c.png">
+</p>
+
 ## Contributing
 If you encounter any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
 
