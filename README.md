@@ -17,7 +17,8 @@ To run ChanAlyzer, use the following command:
 python chanalyzer.py [-s]
 ```
 
-The -s flag is optional and indicates whether to save a new snapshot of the catalog page. If the -s flag is not provided, the program will load the existing snapshot.
+The -s flag is optional and indicates whether to save a new snapshot of the catalo!
+g page. If the -s flag is not provided, the program will load the existing snapshot.
 
 The program will output a word cloud image file named ChanAlyzer_< timestamp >.png in the current working directory.
 
@@ -26,3 +27,6 @@ If you encounter any issues or have suggestions for improvement, please feel fre
 
 ## License
 This program is licensed under the MIT License. See the LICENSE file for details.
+
+## Example Test
+[btc_price_prediction](https://user-images.githubusercontent.com/571631/226732152-06f0c52a-9b2e-48e9-b27a-5a56c09d27d4.png)
